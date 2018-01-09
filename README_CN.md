@@ -85,7 +85,7 @@ XLearning系统包括三种组件：
 
 - CentOS 7.2  
 - Java >= 1.7
-- Hadoop = 2.7(AI版)
+- Hadoop = 2.7([Hadop GPU版](https://github.com/deepfinch/hadoop-ai))
 - [可选]各计算节点具有所需学习平台的依赖环境，如TensorFlow、numpy、Caffe等。  
 
 

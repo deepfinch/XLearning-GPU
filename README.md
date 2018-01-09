@@ -84,7 +84,7 @@ Unpacking the distribution package, the following subdirectories will be generat
 
 - CentOS 7.2  
 - Java >= 1.7
-- Hadoop = 2.7(AI version)
+- Hadoop = 2.7([Hadop GPU version](https://github.com/deepfinch/hadoop-ai))
 - [optional] Dependent environment for deep learning frameworks at the cluster nodes, such as TensorFlow, numpy, Caffe.  
 
 
