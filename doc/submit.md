@@ -14,7 +14,9 @@ files | the required local files of the application
 cacheArchive | the required compressed files in the HDFS path  
 cacheFile | the required files in the HDFS path  
 launch-cmd | execute command  
-user-path | the append for the environment variable $PATH
+user-path | the append for the environment variable $PATH  
+jars | the required jar files  
+user-classpath-first | whether user's job jar should be the first one on class path or not, default as the configure of xlearning.user.classpath.first  
 conf | set the configuration  
 am-cores | number of cores to use for the AM process, default as the configure of xlearning.am.cores  
 am-memory | amount of memory to use for the AM process (in MB)，default as the configure of xlearning.am.memory  
@@ -22,8 +24,8 @@ ps-num | number of ps containers to use for the application, default as the conf
 ps-cores | number of cores to use for the ps process, default as the configure of xlearning.ps.cores  
 ps-memory | amount of memory to use for the ps process (in MB), default as the configure of xlearning.ps.memory  
 worker-num | number of worker containers to use for the application, default as the configure of xlearning.worker.num  
-worker-cores | number of cores to use for the worker process, default as the configure of xlearning.worker.cores  
-worker-gpus | number of gpus to use for the worker process, default as the configure of xlearning.worker.gpus  
+worker-cores | number of cores to use for the worker process, default as the configure of xlearning.worker.cores 
+worker-gpus | number of gpus to use for the worker process, default as the configure of xlearning.worker.gpus   
 worker-memory | amount of memory to use for the worker process(in MB), default as the configure of xlearning.worker.memory  
 queue | the queue of application submitted to, default as the configure of xlearning.app.queue  
 priority | the priority of application, default as the configure of xlearning.app.priority  

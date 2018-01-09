@@ -27,6 +27,7 @@ class ClientArguments {
   int psVCores;
   int psNum;
   String[] xlearningFiles;
+  String[] libJars;
   String launchCmd;
   String inputStrategy;
   String outputStrategy;
@@ -43,6 +44,7 @@ class ClientArguments {
   String boardLogDir;
   Boolean boardEnable;
   Boolean isRenameInputFile;
+  public Boolean userClasspathFirst;
   public int streamEpoch;
   public Boolean inputStreamShuffle;
   public Class<?> inputFormatClass;
@@ -67,6 +69,7 @@ class ClientArguments {
     psVCores = XLearningConfiguration.DEFAULT_XLEARNING_PS_VCORES;
     psNum = XLearningConfiguration.DEFAULT_XLEARNING_PS_NUM;
     xlearningFiles = null;
+    libJars = null;
     launchCmd = "";
     xlearningCacheFiles = "";
     xlearningCacheArchives = "";
@@ -74,6 +77,7 @@ class ClientArguments {
     userPath = "";
     priority = XLearningConfiguration.DEFAULT_XLEARNING_APP_PRIORITY;
     queue = "";
+    userClasspathFirst = XLearningConfiguration.DEFAULT_XLEARNING_USER_CLASSPATH_FIRST;
     boardIndex = XLearningConfiguration.DEFAULT_XLEARNING_TF_BOARD_WORKER_INDEX;
     boardReloadInterval = XLearningConfiguration.DEFAULT_XLEARNING_TF_BOARD_RELOAD_INTERVAL;
     boardEnable = XLearningConfiguration.DEFAULT_XLEARNING_TF_BOARD_ENABLE;
@@ -115,6 +119,9 @@ class ClientArguments {
 
     allOptions.addOption("files", "files", true,
         "Location of the XLearning files used in container");
+    allOptions.addOption("jars", "jars", true,
+        "Location of the XLearning lib jars used in container");
+
     allOptions.addOption("launchCmd", "launch-cmd", true, "Cmd for XLearning program");
     allOptions.addOption("userPath", "user-path", true,
         "add the user set PATH");
@@ -125,6 +132,8 @@ class ClientArguments {
     allOptions.addOption("priority", "priority", true, "Application Priority. Default DEFAULT");
     allOptions.addOption("queue", "queue", true,
         "RM Queue in which this application is to be submitted");
+    allOptions.addOption("userClasspathFirst", "user-classpath-first", true,
+        "whether user add classpath first or not, default:true");
 
     allOptions.addOption("boardIndex", "board-index", true,
         "if app type is tensorflow, worker index for run tensorboard, default:0");
@@ -237,10 +246,10 @@ class ClientArguments {
     }
 
     if (cliParser.hasOption("worker-gpus")) {
-        String workerGpusStr = cliParser.getOptionValue("worker-gpus");
-        workerGpus = Integer.parseInt(workerGpusStr);
-      }
-
+      String workerGpusStr = cliParser.getOptionValue("worker-gpus");
+      workerGpus = Integer.parseInt(workerGpusStr);
+    }
+    
     if (cliParser.hasOption("worker-num")) {
       String workerNumStr = cliParser.getOptionValue("worker-num");
       workerNum = Integer.parseInt(workerNumStr);
@@ -305,6 +314,15 @@ class ClientArguments {
 
     if (cliParser.hasOption("files")) {
       xlearningFiles = StringUtils.split(cliParser.getOptionValue("files"), ",");
+    }
+
+    if (cliParser.hasOption("jars")) {
+      libJars = StringUtils.split(cliParser.getOptionValue("jars"), ",");
+    }
+
+    if(cliParser.hasOption("userClasspathFirst")){
+      String classpathFirst = cliParser.getOptionValue("userClasspathFirst");
+      userClasspathFirst = Boolean.parseBoolean(classpathFirst);
     }
 
     if (cliParser.hasOption("launch-cmd")) {
