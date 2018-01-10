@@ -6,6 +6,7 @@ import org.apache.hadoop.yarn.api.records.Container;
 import org.apache.hadoop.yarn.api.records.ContainerStatus;
 import org.apache.hadoop.yarn.api.records.NodeReport;
 import org.apache.hadoop.yarn.client.api.async.AMRMClientAsync.CallbackHandler;
+import org.apache.hadoop.yarn.api.records.PreemptionMessage;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -133,6 +134,10 @@ public class RMCallbackHandler implements CallbackHandler {
 
   @Override
   public void onNodesUpdated(List<NodeReport> updatedNodes) {
+  }
+
+  @Override
+  public void onPreemptionMessage(PreemptionMessage message) {
   }
 
   @Override
